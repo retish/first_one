@@ -36,10 +36,14 @@ public class PostDao {
                 post.subject = resultSet.getString("subject");
                 post.date = resultSet.getDate("data");
                 result.add(post);
+                connection.close();
+                statement.close();
+                resultSet.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+
 
         return result;
     }
@@ -52,7 +56,8 @@ public class PostDao {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String dateString = sdf.format(date);
             statement.executeUpdate("INSERT INTO posts(name,subject,text,data) VALUES ('" + name + "','" + subject + "','" + text + "','" + dateString + "')");
-
+            connection.close();
+            statement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -66,7 +71,8 @@ public class PostDao {
             Statement statement = connection.createStatement();
             //тут еще должна быть умная логика, наверное
             statement.executeUpdate("DELETE from posts WHERE `id posts` = " + id );
-
+            connection.close();
+            statement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
