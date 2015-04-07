@@ -70,7 +70,7 @@ public class PostDao {
         try {
             Statement statement = connection.createStatement();
             //тут еще должна быть умная логика, наверное
-            statement.executeUpdate("DELETE from posts WHERE `id posts` = " + id );
+            statement.executeUpdate("DELETE from posts WHERE \"id posts\" = " + id );
             connection.close();
             statement.close();
 
